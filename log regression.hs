@@ -11,6 +11,7 @@ avg :: [Double] -> Double
 ln :: [Double] -> [Double]
 sxx :: [Double] -> Double -> Double
 sxy :: [Double] -> Double -> [Double] -> Double -> Double
+regress :: [Double] -> [Double] -> IO()
 
 sxx x mx = let m = map (subtract mx) x
            in sum (map (^2) m)
@@ -23,9 +24,7 @@ ln x = map log x
 
 avg l = (sum l) / (genericLength l)
 
-main = do
-    let x = [0.36772,1.64873,7.38910]
-    let y = [2.3,5.3,6.5]
+regress x y = do
     let x1 = ln x
     let mx = avg x1
     let my = avg y
