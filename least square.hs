@@ -12,9 +12,9 @@ intercept :: Double -> Double -> Double -> Double
 diff :: Double -> [Double] -> [Double]
 
 avg l = (sum l) / (genericLength l)
-slope i j = sum(zipWith (*) i j) / sum(map (^2) i)
-intercept i j m = (negate (m * i)) + j
-diff m i = map (subtract m) i
+slope x y = sum(zipWith (*) x y) / sum(map (^2) x)
+intercept x y m = (negate (m * x)) + y
+diff m x = map (subtract m) x
 
 main = do    
     let x = [1,2,3,4,5]    
