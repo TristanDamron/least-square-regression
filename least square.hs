@@ -1,7 +1,7 @@
 {-
-    least square module
+    least square module (y = mx + b)
 
-    a series of functions to perform a least square regression on a set of data points
+    a series of functions to perform a least square regression on a set of data points 
     written by tristan damron, 2019
 -}
 import Data.List
