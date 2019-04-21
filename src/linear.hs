@@ -26,5 +26,8 @@ regress x y = do
     let dy = diff my y
     let m = slope dx dy
     let b = intercept mx my m
+    putStr "m = "
     print m
+    putStr "b = "
     print b
+    putStr "In the form (y = mx + b)..."    

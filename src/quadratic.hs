@@ -29,6 +29,10 @@ regress x y = do
     let a = ((_x2y * _xx) - (_xy * _xx2)) / ((_xx * _x2x2) - _xx2^2)
     let b = ((_xy * _x2x2) - (_x2y * _xx2)) / ((_xx * _x2x2) - _xx2^2)
     let c = (sy / n) - (b * (sx / n)) - (a * (x2 / n))
+    putStr "a = "
     print a
+    putStr "b = "
     print b
+    putStr "c = "
     print c
+    putStr "In the form (y = ax^2 + bx + c)..."

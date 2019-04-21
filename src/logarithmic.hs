@@ -33,6 +33,9 @@ regress x y = do
     let _sxy = sxy x1 mx y my
     let _syy = sxx y my
     let a = _sxy / _sxx
-    print a
     let b = my - a * mx
+    putStr "a = "
+    print a
+    putStr "b = "
     print b
+    putStr "In the form (y = a + b ln x)..."
