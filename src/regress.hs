@@ -3,6 +3,7 @@ import Control.Monad
 import Data.List
 import Data.List.Split
 import Data.Char
+import Text.Regex
 import Logarithmic as Log
 import Linear as Lin
 import Quadratic as Quad
@@ -22,7 +23,7 @@ convert x = map (\f -> read f :: Double) x
 main = do
     args <- getArgs
     x <- readFile $ args!!0
-    y <- readFile $ args!!1
+    y <- readFile $ args!!1    
     let op = args!!2
     let _x = splitOn "," x
     let dx = convert _x    
