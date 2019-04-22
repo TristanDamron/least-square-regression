@@ -25,7 +25,7 @@ ln x = map log x
 
 avg l = (sum l) / (genericLength l)
 
-regress x y = do
+prettyRegress x y = do
     let x1 = ln x
     let mx = avg x1
     let my = avg y
@@ -39,3 +39,15 @@ regress x y = do
     putStr "b = "
     print b
     putStr "In the form (y = a + b ln x)..."
+
+regress x y = do
+    let x1 = ln x
+    let mx = avg x1
+    let my = avg y
+    let _sxx = sxx x1 mx
+    let _sxy = sxy x1 mx y my
+    let _syy = sxx y my
+    let a = _sxy / _sxx
+    let b = my - a * mx
+    print a
+    print b

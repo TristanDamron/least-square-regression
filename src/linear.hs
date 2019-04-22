@@ -19,7 +19,7 @@ slope x y = sum(zipWith (*) x y) / sum(map (^2) x)
 intercept x y m = (negate (m * x)) + y
 diff m x = map (subtract m) x
 
-regress x y = do
+prettyRegress x y = do
     let mx = avg x
     let my = avg y
     let dx = diff mx x
@@ -31,3 +31,13 @@ regress x y = do
     putStr "b = "
     print b
     putStr "In the form (y = mx + b)..."
+
+regress x y = do
+    let mx = avg x
+    let my = avg y
+    let dx = diff mx x
+    let dy = diff my y
+    let m = slope dx dy
+    let b = intercept mx my m
+    print m
+    print b
