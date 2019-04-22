@@ -30,4 +30,4 @@ regress x y = do
     print m
     putStr "b = "
     print b
-    putStr "In the form (y = mx + b)..."    
+    putStr "In the form (y = mx + b)..."
