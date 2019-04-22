@@ -49,9 +49,9 @@ main = do
         y <- readFile $ args!!1            
         let op = args!!2
         let p = pretty $ args!!3
-        let _x = splitOn "," x
+        let _x = splitOneOf ",;." x
         let dx = convert _x    
-        let _y = splitOn "," y
+        let _y = splitOneOf ",;." y
         let dy = convert _y    
 
         if p == True then do 
