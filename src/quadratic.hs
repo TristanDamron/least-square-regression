@@ -8,6 +8,7 @@
 module Quadratic where
 import Data.List
 
+prettyRegress :: [Double] -> [Double] -> IO()
 regress :: [Double] -> [Double] -> IO()
 
 prettyRegress x y = do

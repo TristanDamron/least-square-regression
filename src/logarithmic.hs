@@ -8,10 +8,11 @@
 module Logarithmic where
 import Data.List
 
-avg :: [Double] -> Double
-ln :: [Double] -> [Double]
 sxx :: [Double] -> Double -> Double
 sxy :: [Double] -> Double -> [Double] -> Double -> Double
+ln :: [Double] -> [Double]
+avg :: [Double] -> Double
+prettyRegress :: [Double] -> [Double] -> IO()
 regress :: [Double] -> [Double] -> IO()
 
 sxx x mx = let m = map (subtract mx) x

@@ -12,6 +12,7 @@ avg :: [Double] -> Double
 slope :: [Double] -> [Double] -> Double
 intercept :: Double -> Double -> Double -> Double
 diff :: Double -> [Double] -> [Double]
+prettyRegress :: [Double] -> [Double] -> IO()
 regress :: [Double] -> [Double] -> IO()
 
 avg l = (sum l) / (genericLength l)
