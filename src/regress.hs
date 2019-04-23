@@ -9,11 +9,11 @@ import Logarithmic as Log
 import Linear as Lin
 import Quadratic as Quad
 
-main :: IO()
 operation :: String -> [Double] -> [Double] -> IO()
-convert :: [String] -> [Double]
+prettyOperation :: String -> [Double] -> [Double] -> IO()
 parseFlags :: String -> IO()
-pretty :: String -> Bool
+main :: IO()
+
 
 operation s x y
     | s == "lin" = Lin.regress x y
@@ -27,16 +27,10 @@ prettyOperation s x y
     | s == "quad" = Quad.prettyRegress x y
     | otherwise = putStrLn $ "Error: Cannot recognize operation " ++ s
 
-convert x = map (\f -> read f :: Double) x
-
 parseFlags f
     | f == "--version" = putStrLn "Regress v1.1 INDEV"
-    | f == "--help" = putStrLn "Usage: regress.exe \"dir/to/x data.csv\" \"dir/to/y data.csv\" lin|log|quad simple|pretty [--version|--help]"
+    | f == "--help" = putStrLn "Usage: regress.exe \"dir/to/x data.csv\" \"dir/to/y data.csv\" lin|log|quad simple|prty [--version|--help]"
     | otherwise = putStr ""  
-
-pretty "pretty" = True
-pretty "simple" = False
-pretty x = False
 
 main = do
     args <- getArgs   
@@ -48,15 +42,19 @@ main = do
         x <- readFile $ args!!0
         y <- readFile $ args!!1            
         let op = args!!2
-        let p = pretty $ args!!3
+        let pretty = args!!3
         let _x = splitOneOf ",;." x
-        let dx = convert _x    
+        let dx = map (read) _x    
         let _y = splitOneOf ",;." y
-        let dy = convert _y    
+        let dy = map (read) _y    
 
-        if p == True then do 
+        if pretty == "pretty" then do 
             prettyOperation op dx dy
             putStrLn ""
             putStr "Done."
         else do
-            operation op dx dy
+            if pretty == "simple" then do
+                operation op dx dy
+            else do
+                putStrLn "Warning: Output not defined/recognized. Trying using \"pretty\" or \"simple.\". Defaulting to simple output."
+                operation op dx dy
