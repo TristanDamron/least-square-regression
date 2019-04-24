@@ -9,24 +9,22 @@ module Logarithmic where
 import Data.List
 
 sxx :: [Double] -> Double -> Double
-sxy :: [Double] -> Double -> [Double] -> Double -> Double
-ln :: [Double] -> [Double]
-avg :: [Double] -> Double
-prettyRegress :: [Double] -> [Double] -> IO()
-simpleRegress :: [Double] -> [Double] -> IO()
-regress :: [Double] -> [Double] -> (Double, Double)
-
 sxx x mx = let m = map (subtract mx) x
            in sum (map (^2) m)
 
+sxy :: [Double] -> Double -> [Double] -> Double -> Double
 sxy x mx y my = let m = map (subtract mx) x
                     n = map (subtract my) y
                 in sum ( zipWith(*) m n)
 
+ln :: [Double] -> [Double]
 ln x = map log x
 
+
+avg :: [Double] -> Double
 avg l = (sum l) / (genericLength l)
 
+prettyRegress :: [Double] -> [Double] -> IO()
 prettyRegress x y = do
     let x1 = ln x
     let mx = avg x1
@@ -42,6 +40,7 @@ prettyRegress x y = do
     print b
     putStr "In the form (y = a + b ln x)..."
 
+simpleRegress :: [Double] -> [Double] -> IO()
 simpleRegress x y = do
     let x1 = ln x
     let mx = avg x1
@@ -54,6 +53,7 @@ simpleRegress x y = do
     print a
     print b
 
+regress :: [Double] -> [Double] -> (Double, Double)
 regress x y = (a, b)
   where
     x1 = ln x

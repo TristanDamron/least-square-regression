@@ -10,27 +10,27 @@ import Linear as Lin
 import Quadratic as Quad
 
 operation :: String -> [Double] -> [Double] -> IO()
-prettyOperation :: String -> [Double] -> [Double] -> IO()
-parseFlags :: String -> IO()
-main :: IO()
-
 operation s x y
     | s == "lin" = Lin.simpleRegress x y
     | s == "log" = Log.simpleRegress x y
     | s == "quad" = Quad.simpleRegress x y
     | otherwise = putStrLn $ "Error: Cannot recognize operation " ++ s
 
+prettyOperation :: String -> [Double] -> [Double] -> IO()
 prettyOperation s x y
     | s == "lin" = Lin.prettyRegress x y
     | s == "log" = Log.prettyRegress x y
     | s == "quad" = Quad.prettyRegress x y
     | otherwise = putStrLn $ "Error: Cannot recognize operation " ++ s
 
+
+parseFlags :: String -> IO()
 parseFlags f
     | f == "--version" = putStrLn "Regress v1.1 INDEV"
     | f == "--help" = putStrLn "Usage: regress.exe \"dir/to/x data.csv\" \"dir/to/y data.csv\" lin|log|quad simple|prty [--version|--help]"
     | otherwise = putStr ""  
 
+main :: IO()
 main = do
     args <- getArgs   
     mapM (parseFlags) args   
