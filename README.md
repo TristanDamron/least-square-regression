@@ -8,6 +8,7 @@ Current version: 1.1 INDEV
 * Pretty vs Simple outputs
 * Support common delimiter types for csv/dsv data
 * Removed sample data that existed in previous versions
+* regress function in modules now returns a tuple of values
 
 # Getting Started
 If this is your first time using Regress, getting started is easy. Simply download this repository as a .zip or by cloning it with `git clone https://github.com/TristanDamron/regress.git`
@@ -41,8 +42,9 @@ This software package comes with three Haskell modules for calculating linear, l
 `Lin.regress x y`
 `Log.regress x y`
 
-The pattern for the each of the regress functions is:
-`[Double] -> [Double] -> Double`
+The pattern for the each of the regress functions is either:
+`[Double] -> [Double] -> (Double, Double)`
+`[Double] -> [Double] -> (Double, Double, Double)`
 
 # License
 This software is licensed as free software under the conditions of the GNU GPL v2.0

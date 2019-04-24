@@ -14,11 +14,10 @@ prettyOperation :: String -> [Double] -> [Double] -> IO()
 parseFlags :: String -> IO()
 main :: IO()
 
-
 operation s x y
-    | s == "lin" = Lin.regress x y
-    | s == "log" = Log.regress x y
-    | s == "quad" = Quad.regress x y
+    | s == "lin" = Lin.simpleRegress x y
+    | s == "log" = Log.simpleRegress x y
+    | s == "quad" = Quad.simpleRegress x y
     | otherwise = putStrLn $ "Error: Cannot recognize operation " ++ s
 
 prettyOperation s x y

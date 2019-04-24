@@ -3,6 +3,9 @@
 
     a series of functions to perform a least square regression on a set of data points 
     written by tristan damron, 2019
+
+    @todo(): For all regress modules, it would be nice to have a function that returns values as a tuple (Double, Double) or (Double, Double, Double)
+    
 -}
 
 module Linear where
@@ -13,7 +16,9 @@ slope :: [Double] -> [Double] -> Double
 intercept :: Double -> Double -> Double -> Double
 diff :: Double -> [Double] -> [Double]
 prettyRegress :: [Double] -> [Double] -> IO()
-regress :: [Double] -> [Double] -> IO()
+simpleRegress :: [Double] -> [Double] -> IO()
+regress :: [Double] -> [Double] -> (Double, Double)
+
 
 avg l = (sum l) / (genericLength l)
 slope x y = sum(zipWith (*) x y) / sum(map (^2) x)
@@ -33,7 +38,7 @@ prettyRegress x y = do
     print b
     putStr "In the form (y = mx + b)..."
 
-regress x y = do
+simpleRegress x y = do
     let mx = avg x
     let my = avg y
     let dx = diff mx x
@@ -42,3 +47,14 @@ regress x y = do
     let b = intercept mx my m
     print m
     print b
+
+
+regress x y = (m, b)
+  where 
+    mx = avg x
+    my = avg y
+    dx = diff mx x
+    dy = diff my y
+    m = slope dx dy
+    b = intercept mx my m
+

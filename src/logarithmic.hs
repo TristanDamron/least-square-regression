@@ -13,7 +13,8 @@ sxy :: [Double] -> Double -> [Double] -> Double -> Double
 ln :: [Double] -> [Double]
 avg :: [Double] -> Double
 prettyRegress :: [Double] -> [Double] -> IO()
-regress :: [Double] -> [Double] -> IO()
+simpleRegress :: [Double] -> [Double] -> IO()
+regress :: [Double] -> [Double] -> (Double, Double)
 
 sxx x mx = let m = map (subtract mx) x
            in sum (map (^2) m)
@@ -41,7 +42,7 @@ prettyRegress x y = do
     print b
     putStr "In the form (y = a + b ln x)..."
 
-regress x y = do
+simpleRegress x y = do
     let x1 = ln x
     let mx = avg x1
     let my = avg y
@@ -52,3 +53,14 @@ regress x y = do
     let b = my - a * mx
     print a
     print b
+
+regress x y = (a, b)
+  where
+    x1 = ln x
+    mx = avg x1
+    my = avg y
+    _sxx = sxx x1 mx
+    _sxy = sxy x1 mx y my
+    _syy = sxx y my
+    a = _sxy / _sxx
+    b = my - a * mx

@@ -9,7 +9,8 @@ module Quadratic where
 import Data.List
 
 prettyRegress :: [Double] -> [Double] -> IO()
-regress :: [Double] -> [Double] -> IO()
+simpleRegress :: [Double] -> [Double] -> IO()
+regress :: [Double] -> [Double] -> (Double, Double, Double)
 
 prettyRegress x y = do
     let n = genericLength x
@@ -38,7 +39,7 @@ prettyRegress x y = do
     print c
     putStr "In the form (y = ax^2 + bx + c)..."
 
-regress x y = do
+simpleRegress x y = do
     let n = genericLength x
     let sx = sum x
     let sy = sum y
@@ -60,3 +61,25 @@ regress x y = do
     print a
     print b
     print c
+
+regress x y = (a, b, c)
+  where
+    n = genericLength x
+    sx = sum x
+    sy = sum y
+    x2 = sum $ map (^2) x
+    x3 = sum $ map (^3) x
+    x4 = sum $ map (^4) x
+    xy = sum $ zipWith(*) x y
+    x2y = sum $ zipWith (*) (map (^ 2) x) y
+
+    _xx = x2 - ((sx^2) / n)
+    _xy = xy - ((sx * sy) / n)
+    _xx2 = x3 - ((x2 * sx) / n)
+    _x2y = x2y - ((x2 * sy) / n)
+    _x2x2 = x4 - ((x2^2) / n)    
+
+    a = ((_x2y * _xx) - (_xy * _xx2)) / ((_xx * _x2x2) - _xx2^2)
+    b = ((_xy * _x2x2) - (_x2y * _xx2)) / ((_xx * _x2x2) - _xx2^2)
+    c = (sy / n) - (b * (sx / n)) - (a * (x2 / n))
+
