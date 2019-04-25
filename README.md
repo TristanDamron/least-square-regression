@@ -1,7 +1,7 @@
 # Regress
 Haskell modules and binaries for developing regression models. Regress can perform fast regressions on large amounts of number data.
 
-Current version: 1.1 INDEV
+Current version: 1.1
 
 ## What's new in version 1.1?
 * Command line flags (--version --help)
@@ -9,6 +9,8 @@ Current version: 1.1 INDEV
 * Support common delimiter types for csv/dsv data
 * Removed sample data that existed in previous versions
 * regress function in modules now returns a tuple of values
+* Archived previous versions of Regress
+* Updated documentation
 
 # Getting Started
 If this is your first time using Regress, getting started is easy. Simply download this repository as a .zip or by cloning it with `git clone https://github.com/TristanDamron/regress.git`
@@ -16,7 +18,7 @@ If this is your first time using Regress, getting started is easy. Simply downlo
 If you are interested in using the Haskell modules in your own Haskell program, simply copy the contents of the `src` folder to the main directory of your project. If you are interested in using the Regress command line tool, read the instructions below for your operating system:
 
 ### Windows Users 
-After downloading the repository to your hard drive, you'll need to add the location of the `bin` folder to your system's %PATH% variable. 
+After downloading the repository to your hard drive, you'll need to add the location of the `bin/1.1` folder to your system's %PATH% variable. 
 
 ### Unix Users
 Coming Soon!

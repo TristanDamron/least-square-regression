@@ -27,8 +27,8 @@ prettyOperation s x y
 parseFlags :: String -> IO()
 parseFlags f
     | f == "--version" = putStrLn "Regress v1.1 INDEV"
-    | f == "--help" = putStrLn "Usage: regress.exe \"dir/to/x data.csv\" \"dir/to/y data.csv\" lin|log|quad simple|prty [--version|--help]"
-    | otherwise = putStr ""  
+    | f == "--help" = putStrLn "Usage: regress.exe \"dir/to/x data.csv\" \"dir/to/y data.csv\" lin|log|quad simple|pretty [--version|--help]"
+    | otherwise = putStr ""
 
 main :: IO()
 main = do
@@ -36,10 +36,13 @@ main = do
     mapM (parseFlags) args   
     if genericLength(args) < 4 then do
         putStrLn "Error: Not enough arguments."
+        parseFlags "--help"
         exitWith (ExitSuccess)  
     else do
         x <- readFile $ args!!0
-        y <- readFile $ args!!1            
+        y <- readFile $ args!!1
+        print x
+        print y
         let op = args!!2
         let pretty = args!!3
         let _x = splitOneOf ",;." x
