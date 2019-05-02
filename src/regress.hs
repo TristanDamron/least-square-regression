@@ -41,13 +41,11 @@ main = do
     else do
         x <- readFile $ args!!0
         y <- readFile $ args!!1
-        print x
-        print y
         let op = args!!2
         let pretty = args!!3
-        let _x = splitOneOf ",;." x
+        let _x = splitOneOf ",;\n" x
         let dx = map (read) _x    
-        let _y = splitOneOf ",;." y
+        let _y = splitOneOf ",;.\n" y
         let dy = map (read) _y    
 
         if pretty == "pretty" then do 
